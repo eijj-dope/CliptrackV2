@@ -1,5 +1,4 @@
 
-
 <?php
 
 ini_set('display_errors', '1');
@@ -7,14 +6,16 @@ error_reporting(E_ALL);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = require __DIR__ . '/../bootstrap/app.php';
+try {
+    $app = require __DIR__ . '/../bootstrap/app.php';
 
-echo "Bootstrap passed<br>";
+    $request = \Illuminate\Http\Request::capture();
 
-$request = \Illuminate\Http\Request::capture();
+    $app->handleRequest($request);
 
-echo "Request captured<br>";
-
-$response = $app->handleRequest($request);
-
-echo "Request handled";
+} catch (\Throwable $e) {
+    echo "ERROR: " . get_class($e) . "<br>";
+    echo "MESSAGE: " . htmlspecialchars($e->getMessage()) . "<br>";
+    echo "FILE: " . htmlspecialchars($e->getFile()) . "<br>";
+    echo "LINE: " . $e->getLine();
+}
