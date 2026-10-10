@@ -1,6 +1,7 @@
 
 
+
 <?php
 
-echo "PHP is working on Vercel!";
+require __DIR__ . '/../public/index.php';
 
