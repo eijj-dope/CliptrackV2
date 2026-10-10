@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Service extends Model
+{
+    protected $fillable = ['name', 'price', 'duration_min', 'active'];
+
+    public function staff()
+    {
+        return $this->belongsToMany(Staff::class, 'staff_service');
+    }
+}
