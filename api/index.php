@@ -1,14 +1,11 @@
 
+
 <?php
 
-$autoload = __DIR__ . '/../vendor/autoload.php';
-$framework = __DIR__ . '/../vendor/laravel/framework/src/Illuminate/Foundation/Application.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-echo "Autoload exists: " . (file_exists($autoload) ? "YES" : "NO") . "<br>";
-echo "Framework file exists: " . (file_exists($framework) ? "YES" : "NO") . "<br>";
+echo "Autoload works<br>";
 
-if (file_exists($autoload)) {
-    require $autoload;
-    echo "Laravel class available: " .
-        (class_exists(\Illuminate\Foundation\Application::class) ? "YES" : "NO");
-}
+$app = require __DIR__ . '/../bootstrap/app.php';
+
+echo "Laravel bootstrap works";
